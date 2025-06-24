@@ -29,10 +29,15 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player updatePlayer(Player player, Integer Id) {
-        player.setId(Id);
-
-        return playerRepository.findById(Id).orElse(null);
-
+        return playerRepository.findById(Id)
+                .map(existingPlayer -> {
+                    existingPlayer.setAge(player.getAge());
+                    existingPlayer.setName(player.getName());
+                    existingPlayer.setRating(player.getRating());
+                    existingPlayer.setPosition(player.getPosition());
+                    return playerRepository.save(existingPlayer);
+                })
+                .orElseThrow(() -> new RuntimeException("Player not found with id: " + Id));
     }
 
     @Override
