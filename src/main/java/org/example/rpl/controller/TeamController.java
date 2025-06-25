@@ -1,7 +1,6 @@
 package org.example.rpl.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.rpl.entity.Player;
 import org.example.rpl.entity.Team;
 import org.example.rpl.service.TeamService;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +16,9 @@ public class TeamController {
 
     @PostMapping("/new")
     public Team createTeam(@RequestBody Team team) {
-        return teamService.save(team);
+        return teamService.createTeam(team);
     }
 
-    
     @GetMapping("/all")
     public List<Team> getAllTeams() {
         return teamService.findAll();
@@ -33,12 +31,13 @@ public class TeamController {
 
     @PutMapping("/{id}")
     public Team updateTeam(@PathVariable Integer id, @RequestBody Team team) {
-        return teamService.update(team, id);
+        team.setId(id);
+        return teamService.updateteam(team);
     }
-
 
     @DeleteMapping("/{id}")
     public void deleteTeam(@PathVariable Integer id) {
-        teamService.delete(id);
+
+        teamService.deleteTeam(id);
     }
 }
