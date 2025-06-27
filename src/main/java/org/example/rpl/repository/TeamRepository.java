@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TeamRepository extends JpaRepository<Team, Integer> {
     @EntityGraph(attributePaths = {"teams"})
-    Optional<Team> findWithteamsByIdsById(Integer id);
+    Optional<Team> findWithTeamsById(Integer id);
 
     Integer id(int id);
 }
