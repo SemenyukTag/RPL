@@ -1,13 +1,14 @@
 package org.example.rpl.service;
 
-import org.example.rpl.entity.Player;
+import org.example.rpl.dto.PlayerRequestDTO;
+import org.example.rpl.dto.PlayerResponseDTO;
 
 import java.util.List;
 
 public interface PlayerService {
-    List<Player> findAll();
-    Player findById(Integer Id);
-    Player createPlayer(Player player);
-    Player updatePlayer(Player player, Integer Id);
-    void deletePlayer(Integer Id);
+    PlayerResponseDTO createPlayer(PlayerRequestDTO playerDTO);
+    List<PlayerResponseDTO> findAll();
+    PlayerResponseDTO findById(Integer id);
+    PlayerResponseDTO updatePlayer(PlayerRequestDTO playerDTO, Integer id);
+    void deletePlayer(Integer id);
 }

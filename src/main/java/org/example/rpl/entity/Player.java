@@ -20,6 +20,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Player {
 
+    public enum PlayerStatus {
+        IN_STARTING_LINEUP, // в стартовом составе
+        ON_BENCH,          // на замене
+        INJURED            // травмирован
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -47,4 +53,9 @@ public class Player {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    @NotNull(message = "Status cannot be null")
+    private PlayerStatus status;
 }
