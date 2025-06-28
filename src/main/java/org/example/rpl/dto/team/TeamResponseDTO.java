@@ -1,10 +1,9 @@
-package org.example.rpl.dto;
+package org.example.rpl.dto.team;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.rpl.entity.Player.PlayerStatus;
 
 import java.time.LocalDateTime;
 
@@ -12,13 +11,11 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlayerResponseDTO {
-    private int id;
+public class TeamResponseDTO {
+    private Integer id;
     private String name;
-    private int rating;
-    private String position;
-    private int age;
-    private PlayerStatus status;
+    private String city;
+    private String rating;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

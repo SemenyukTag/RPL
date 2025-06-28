@@ -1,12 +1,13 @@
 package org.example.rpl.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.rpl.entity.Team;
+import org.example.rpl.dto.team.TeamRequestDTO;
+import org.example.rpl.dto.team.TeamResponseDTO;
 import org.example.rpl.service.TeamService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/team")
@@ -14,30 +15,30 @@ import java.util.List;
 public class TeamController {
     private final TeamService teamService;
 
-    @PostMapping("/new")
-    public Team newTeam(@RequestBody Team team) {
-        return teamService.createTeam(team);
+    @PostMapping
+    public TeamResponseDTO createTeam(@RequestBody @Valid TeamRequestDTO teamDTO) {
+        return teamService.createTeam(teamDTO);
     }
 
-    @GetMapping("/all")
-    public List<Team> getAllTeams() {
+    @GetMapping
+    public List<TeamResponseDTO> getAllTeams() {
         return teamService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Team getTeam(@PathVariable Integer id) {
+    public TeamResponseDTO getTeam(@PathVariable Integer id) {
         return teamService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public Team updateTeam(@PathVariable Integer id, @RequestBody Team team) {
-        team.setId(id);
-        return teamService.updateteam(team);
+    public TeamResponseDTO updateTeam(
+            @PathVariable Integer id,
+            @RequestBody @Valid TeamRequestDTO teamDTO) {
+        return teamService.updateTeam(teamDTO, id);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTeam(@PathVariable Integer id) {
-
         teamService.deleteTeam(id);
     }
 }

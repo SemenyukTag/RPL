@@ -1,8 +1,8 @@
 package org.example.rpl.mapper;
 
 
-import org.example.rpl.dto.PlayerRequestDTO;
-import org.example.rpl.dto.PlayerResponseDTO;
+import org.example.rpl.dto.player.PlayerRequestDTO;
+import org.example.rpl.dto.player.PlayerResponseDTO;
 import org.example.rpl.entity.Player;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package org.example.rpl.dto;
+package org.example.rpl.dto.player;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

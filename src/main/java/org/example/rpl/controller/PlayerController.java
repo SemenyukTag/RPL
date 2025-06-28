@@ -2,16 +2,12 @@ package org.example.rpl.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.rpl.dto.PlayerRequestDTO;
-import org.example.rpl.dto.PlayerResponseDTO;
-import org.example.rpl.dto.PlayerStatusDTO;
-import org.example.rpl.entity.Player;
-import org.example.rpl.mapper.PlayerMapper;
+import org.example.rpl.dto.player.PlayerRequestDTO;
+import org.example.rpl.dto.player.PlayerResponseDTO;
 import org.example.rpl.service.PlayerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/player")

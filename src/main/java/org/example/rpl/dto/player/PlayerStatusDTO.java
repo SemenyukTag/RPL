@@ -1,4 +1,4 @@
-package org.example.rpl.dto;
+package org.example.rpl.dto.player;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

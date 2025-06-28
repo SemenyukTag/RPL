@@ -1,7 +1,7 @@
 package org.example.rpl.service;
 
-import org.example.rpl.dto.PlayerRequestDTO;
-import org.example.rpl.dto.PlayerResponseDTO;
+import org.example.rpl.dto.player.PlayerRequestDTO;
+import org.example.rpl.dto.player.PlayerResponseDTO;
 
 import java.util.List;
 
