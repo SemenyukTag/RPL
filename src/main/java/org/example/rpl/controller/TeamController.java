@@ -15,12 +15,12 @@ import java.util.List;
 public class TeamController {
     private final TeamService teamService;
 
-    @PostMapping
+    @PostMapping("new")
     public TeamResponseDTO createTeam(@RequestBody @Valid TeamRequestDTO teamDTO) {
         return teamService.createTeam(teamDTO);
     }
 
-    @GetMapping
+    @GetMapping("all")
     public List<TeamResponseDTO> getAllTeams() {
         return teamService.findAll();
     }

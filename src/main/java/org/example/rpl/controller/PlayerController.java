@@ -15,12 +15,12 @@ import java.util.List;
 public class PlayerController {
     private final PlayerService playerService;
 
-    @PostMapping
+    @PostMapping("new")
     public PlayerResponseDTO createPlayer(@RequestBody @Valid PlayerRequestDTO playerDTO) {
         return playerService.createPlayer(playerDTO);
     }
 
-    @GetMapping
+    @GetMapping("all")
     public List<PlayerResponseDTO> getAllPlayers() {
         return playerService.findAll();
     }
