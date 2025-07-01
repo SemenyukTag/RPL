@@ -46,6 +46,11 @@ public class Player {
     @NotNull(message = "Age cannot be null")
     private int age;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id", nullable = false)
+    @NotNull(message = "Team cannot be null")
+    private Team team;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
