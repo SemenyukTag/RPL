@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/player")
 @RequiredArgsConstructor
-@Tag(name = "Управление командами", description = "Методы для работы с футбольными командами")
+@Tag(name = "Управление игроками", description = "Методы для работы с игроками")
 public class PlayerController {
     private final PlayerService playerService;
 
@@ -59,6 +59,13 @@ public class PlayerController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Изменить игрока по ID",
+            description = "Возвращает информацию о конкретном футболисте")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Игрок найден"),
+            @ApiResponse(responseCode = "404", description = "Игрок не найден"),
+            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
+    })
     public PlayerResponseDTO updatePlayer(
             @PathVariable Integer id,
             @RequestBody @Valid PlayerRequestDTO playerDTO) {
@@ -66,6 +73,13 @@ public class PlayerController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "удалить игрока по ID",
+            description = "Возвращает информацию о конкретном футболисте")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Игрок найден"),
+            @ApiResponse(responseCode = "404", description = "Игрок не найден"),
+            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
+    })
     public void deletePlayer(@PathVariable Integer id) {
         playerService.deletePlayer(id);
     }
