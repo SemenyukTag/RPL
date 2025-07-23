@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - includeAll:
+      path: db/migration/changelog/changes/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
