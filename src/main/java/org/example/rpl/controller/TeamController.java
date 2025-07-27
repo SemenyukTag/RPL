@@ -9,16 +9,21 @@ import lombok.RequiredArgsConstructor;
 import org.example.rpl.dto.team.TeamRequestDTO;
 import org.example.rpl.dto.team.TeamResponseDTO;
 import org.example.rpl.service.TeamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/team")
-@RequiredArgsConstructor
 @Tag(name = "Управление командами", description = "Методы для работы с футбольными командами")
 public class TeamController {
     private final TeamService teamService;
+
+    @Autowired
+    public TeamController(TeamService teamService) {
+        this.teamService = teamService;
+    }
 
     @PostMapping("new")
     @Operation(summary = "Создать новую команду",

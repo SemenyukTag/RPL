@@ -6,8 +6,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.example.rpl.kafka.KafkaProducer;
 import org.example.rpl.dto.player.PlayerRequestDTO;
 import org.example.rpl.dto.player.PlayerResponseDTO;
 import org.example.rpl.service.PlayerService;
@@ -19,11 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/player")
-@RequiredArgsConstructor
 @Tag(name = "Управление игроками", description = "Методы для работы с игроками")
 public class PlayerController {
     private final PlayerService playerService;
-    private final KafkaProducer kafkaProducer;
+
+    @Autowired
+    public PlayerController(PlayerService playerService) {
+        this.playerService = playerService;
+    }
 
     @PostMapping("new")
     @Operation(summary = "Создать нового игрока",
@@ -90,7 +91,6 @@ public class PlayerController {
 
     @PostMapping("/send")
     public ResponseEntity<String> sendMessage(@RequestParam String message) {
-        kafkaProducer.sendMessage("rpl-topic", message);
-        return ResponseEntity.ok("Message sent to Kafka");
+        return ResponseEntity.ok("Message endpoint: " + message);
     }
 }
