@@ -80,7 +80,7 @@ databaseChangeLog:
                   name: team_id
                   type: integer
                   constraints:
-                    nullable: false
+                    nullable: true
                     foreignKeyName: fk_player_team
                     references: team(id)
               - column:

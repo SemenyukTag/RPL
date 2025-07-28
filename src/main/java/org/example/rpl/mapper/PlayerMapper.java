@@ -4,17 +4,32 @@ import org.example.rpl.dto.player.PlayerRequestDTO;
 import org.example.rpl.dto.player.PlayerResponseDTO;
 import org.example.rpl.dto.team.SimpleTeamResponseDTO;
 import org.example.rpl.entity.Player;
+import org.example.rpl.entity.Team;
+import org.example.rpl.repository.TeamRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PlayerMapper {
+    private final TeamRepository teamRepository;
+
+    public PlayerMapper(TeamRepository teamRepository) {
+        this.teamRepository = teamRepository;
+    }
+
     public Player toEntity(PlayerRequestDTO dto) {
+        Team team = null;
+        if (dto.getTeamId() != null) {
+            team = teamRepository.findById(dto.getTeamId())
+                    .orElseThrow(() -> new RuntimeException("Team not found with id: " + dto.getTeamId()));
+        }
+        
         return Player.builder()
                 .name(dto.getName())
                 .rating(dto.getRating())
                 .position(dto.getPosition())
                 .age(dto.getAge())
                 .status(dto.getStatus())
+                .team(team)
                 .build();
     }
 
@@ -48,5 +63,12 @@ public class PlayerMapper {
         entity.setPosition(dto.getPosition());
         entity.setAge(dto.getAge());
         entity.setStatus(dto.getStatus());
+        
+        // Обновляем команду только если teamId указан
+        if (dto.getTeamId() != null) {
+            Team team = teamRepository.findById(dto.getTeamId())
+                    .orElseThrow(() -> new RuntimeException("Team not found with id: " + dto.getTeamId()));
+            entity.setTeam(team);
+        }
     }
 }

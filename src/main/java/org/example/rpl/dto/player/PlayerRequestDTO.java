@@ -26,4 +26,6 @@ public class PlayerRequestDTO {
 
     @NotNull(message = "Status cannot be null")
     private PlayerStatus status;
+
+    private Integer teamId;
 }

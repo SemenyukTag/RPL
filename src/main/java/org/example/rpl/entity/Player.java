@@ -23,7 +23,8 @@ public class Player {
     public enum PlayerStatus {
         IN_STARTING_LINEUP, // в стартовом составе
         ON_BENCH,          // на замене
-        INJURED            // травмирован
+        INJURED,           // травмирован
+        ACTIVE             // активный игрок
     }
 
     @Id
@@ -47,8 +48,7 @@ public class Player {
     private int age;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id", nullable = false)
-    @NotNull(message = "Team cannot be null")
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @CreationTimestamp
